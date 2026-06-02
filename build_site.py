@@ -43,6 +43,7 @@ def md_to_html(text: str) -> str:
     out = []
     in_para = False
     para_buf = []
+    system_buf = []  # 收集连续的【】系统消息行
 
     def flush_para():
         nonlocal in_para
@@ -52,16 +53,38 @@ def md_to_html(text: str) -> str:
             para_buf.clear()
             in_para = False
 
+    def flush_system():
+        """将收集到的系统消息行输出为居中对齐的对话框"""
+        if system_buf:
+            lines_html = "".join(f"<p>{inline_md(l)}</p>" for l in system_buf)
+            out.append(f'<div class="system-dialog">{lines_html}</div>')
+            system_buf.clear()
+
     for i, line in enumerate(lines):
+        # 检测系统对话框行（以【开头、】结尾）
+        stripped = line.strip()
+        if stripped.startswith("【") and stripped.endswith("】"):
+            flush_para()
+            system_buf.append(stripped)
+            continue
+        elif stripped == "" and system_buf:
+            # 空行：如果后面还是系统消息，继续收集；否则输出
+            # 先看看下一行是不是系统消息
+            pass  # 让下面的空行逻辑处理
+        elif system_buf and not (stripped.startswith("【") and stripped.endswith("】")):
+            flush_system()
+
         # 章节分隔符 (---)
         if re.match(r"^---+$", line.strip()):
             flush_para()
+            flush_system()
             out.append('<hr class="section-break">')
             continue
 
         # 二级标题
         if re.match(r"^## ", line):
             flush_para()
+            flush_system()
             h2 = re.sub(r"^## ", "", line)
             out.append(f"<h2>{inline_md(h2)}</h2>")
             continue
@@ -69,6 +92,7 @@ def md_to_html(text: str) -> str:
         # 三级标题
         if re.match(r"^### ", line):
             flush_para()
+            flush_system()
             h3 = re.sub(r"^### ", "", line)
             out.append(f"<h3>{inline_md(h3)}</h3>")
             continue
@@ -76,6 +100,7 @@ def md_to_html(text: str) -> str:
         # 引用
         if line.startswith('"> ') or line.startswith("> "):
             flush_para()
+            flush_system()
             block = "\n".join(
                 l[3:] if l.startswith('"> ') else l[2:] if l.startswith("> ") else l
                 for l in [line]
@@ -86,6 +111,7 @@ def md_to_html(text: str) -> str:
         # 水平线
         if line.strip() in ("---", "***", "___"):
             flush_para()
+            flush_system()
             out.append("<hr>")
             continue
 
@@ -98,6 +124,7 @@ def md_to_html(text: str) -> str:
         para_buf.append(inline_md(line))
         in_para = True
 
+    flush_system()
     flush_para()
     return "\n".join(out)
 

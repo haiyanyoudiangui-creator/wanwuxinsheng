@@ -235,6 +235,27 @@ body {
   font-size: 1.05rem;
 }
 
+/* 系统对话框 */
+.system-dialog {
+  margin: 1.5rem auto;
+  padding: 1.2rem 1.8rem;
+  background: var(--code-bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  text-align: center;
+  max-width: 400px;
+}
+
+.system-dialog p {
+  text-indent: 0;
+  margin-bottom: 0.3rem;
+  font-weight: 600;
+  color: var(--accent);
+  letter-spacing: 0.04em;
+}
+
+.system-dialog p:last-child { margin-bottom: 0; }
+
 .chapter-content h2 {
   font-size: 1.15rem;
   margin: 1.8rem 0 0.8rem;

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 万物心声 — 静态网站生成器
-将 chapters/ 下的 Markdown 章节文件转换为 HTML 网站，输出到 site/ 目录。
+将 chapters/ 下的 Markdown 章节文件转换为 HTML 网站，输出到 docs/ 目录。
 """
 
 import os
@@ -11,7 +11,7 @@ import glob
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 CHAPTERS_DIR = os.path.join(BASE_DIR, "chapters")
-SITE_DIR = os.path.join(BASE_DIR, "site")
+SITE_DIR = os.path.join(BASE_DIR, "docs")
 CSS_PATH = "css/style.css"
 
 CHAPTER_CHAPTER_PATTERN = re.compile(r"chapters/chapter-(\d+)\.md")

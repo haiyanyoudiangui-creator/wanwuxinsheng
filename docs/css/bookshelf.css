@@ -1,0 +1,207 @@
+/* ========================================
+   书架 - 多书门户样式
+   ======================================== */
+
+:root {
+  --bg: #fdf6ec;
+  --bg-card: #fffdf7;
+  --text: #3d3226;
+  --text-light: #7a6e5e;
+  --accent: #b5443c;
+  --accent-hover: #8b221b;
+  --border: #e5d9c4;
+  --shadow: 0 2px 16px rgba(0,0,0,0.06);
+  --shadow-lg: 0 8px 32px rgba(0,0,0,0.10);
+  --font-body: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #1e1b16;
+    --bg-card: #272420;
+    --text: #d4c8b4;
+    --text-light: #9b8e7a;
+    --accent: #d4736a;
+    --accent-hover: #e89890;
+    --border: #3d3528;
+    --shadow: 0 2px 16px rgba(0,0,0,0.3);
+    --shadow-lg: 0 8px 32px rgba(0,0,0,0.5);
+  }
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { font-size: 17px; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.85;
+  min-height: 100vh;
+}
+
+/* --- 书架头部 --- */
+.bookshelf-header {
+  text-align: center;
+  padding: 3rem 1.25rem 1.5rem;
+}
+.bookshelf-header h1 {
+  font-size: 2rem;
+  font-weight: 900;
+  color: var(--accent);
+  letter-spacing: 0.06em;
+}
+.bookshelf-header .subtitle {
+  font-size: 0.95rem;
+  color: var(--text-light);
+  margin-top: 0.4rem;
+}
+
+/* --- 书籍网格 --- */
+.book-grid {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 1rem 1.25rem 3rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+
+/* --- 书籍卡片 --- */
+.book-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+}
+.book-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* 封面区域 */
+.book-cover {
+  aspect-ratio: 3 / 4;
+  background: linear-gradient(135deg, #3d3226 0%, #5a4a3a 30%, #8b6f5a 60%, #b5443c 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+/* 万物心声专属封面渐变 */
+.book-cover.cover-wanwuxinsheng {
+  background: linear-gradient(160deg, #1a1a2e 0%, #16213e 30%, #0f3460 60%, #533483 100%);
+}
+.book-cover .cover-text {
+  text-align: center;
+  color: #fff;
+  padding: 1rem;
+}
+.book-cover .cover-title {
+  font-size: 1.3rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+}
+.book-cover .cover-author {
+  font-size: 0.75rem;
+  opacity: 0.7;
+  margin-top: 0.5rem;
+}
+.book-cover .cover-badge {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.6rem;
+  font-size: 0.65rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 3px;
+  background: rgba(255,255,255,0.15);
+  color: #fff;
+  letter-spacing: 0.04em;
+  backdrop-filter: blur(4px);
+}
+/* 新书占位卡 */
+.book-card.new-book .book-cover {
+  background: var(--border);
+  border: 2px dashed var(--text-light);
+  opacity: 0.6;
+}
+.book-card.new-book .book-cover .cover-title {
+  font-size: 1rem;
+  color: var(--text-light);
+  text-shadow: none;
+}
+
+/* 信息区域 */
+.book-info {
+  padding: 1rem 1.2rem;
+  flex: 1;
+}
+.book-info .book-name {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 0.3rem;
+}
+.book-info .book-meta {
+  font-size: 0.75rem;
+  color: var(--text-light);
+  margin-bottom: 0.5rem;
+}
+.book-info .book-desc {
+  font-size: 0.8rem;
+  color: var(--text-light);
+  line-height: 1.6;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.book-tags {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+  margin-top: 0.6rem;
+}
+.book-tag {
+  font-size: 0.65rem;
+  padding: 0.15rem 0.5rem;
+  border-radius: 3px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  color: var(--text-light);
+}
+.book-tag.status {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+
+/* --- 页脚 --- */
+.bookshelf-footer {
+  text-align: center;
+  color: var(--text-light);
+  font-size: 0.8rem;
+  padding: 1.5rem 1.25rem;
+  opacity: 0.6;
+}
+
+/* --- 响应式 --- */
+@media (max-width: 600px) {
+  html { font-size: 16px; }
+  .bookshelf-header h1 { font-size: 1.6rem; }
+  .book-grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+    padding: 0.5rem 0.85rem 2rem;
+  }
+  .book-cover .cover-title { font-size: 1.1rem; }
+}

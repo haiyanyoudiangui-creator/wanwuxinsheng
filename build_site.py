@@ -11,7 +11,7 @@ import glob
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 CHAPTERS_DIR = os.path.join(BASE_DIR, "chapters")
-SITE_DIR = os.path.join(BASE_DIR, "docs")
+SITE_DIR = os.path.join(BASE_DIR, "docs", "books", "wanwuxinsheng")
 CSS_PATH = "css/style.css"
 
 CHAPTER_CHAPTER_PATTERN = re.compile(r"chapters/chapter-(\d+)\.md")
@@ -143,9 +143,9 @@ def render_page(title: str, content: str, active_nav: str = "") -> str:
     """生成完整 HTML 页面。"""
     nav_html = ""
     if active_nav == "index":
-        nav_html = '<a href="index.html" class="active">目录</a>'
+        nav_html = '<a href="index.html" class="active">目录</a>\n      <a href="../../index.html">← 书架</a>'
     elif active_nav == "chapter":
-        nav_html = '<a href="index.html">目录</a>'
+        nav_html = '<a href="index.html">目录</a>\n      <a href="../../index.html">← 书架</a>'
 
     return f"""<!DOCTYPE html>
 <html lang="zh-CN">
@@ -170,7 +170,7 @@ def render_page(title: str, content: str, active_nav: str = "") -> str:
 </div>
 <footer class="footer">
   <p>《万物心声》© 2025 &mdash; 冉峰的故事，从这里开始</p>
-  <p style="margin-top:0.3rem"><a href="index.html">返回目录</a></p>
+  <p style="margin-top:0.3rem"><a href="index.html">返回目录</a> · <a href="../../index.html">返回书架</a></p>
 </footer>
 <script>
 (function() {{
@@ -216,6 +216,14 @@ def render_index(chapters: list) -> str:
 <div class="chapter-list">
   <h2>📚 章节目录</h2>
 {chapter_items}
+</div>
+
+<div class="chapter-list" style="margin-top:2rem">
+  <h2>🎮 小游戏</h2>
+  <div class="chapter-item">
+    <span class="chapter-num">🎴</span>
+    <a href="games/character-match.html">角色对对碰 — 配对角色和他们的心声</a>
+  </div>
 </div>
 """
     return content
@@ -300,8 +308,8 @@ def main():
     print(f"   🏠 index.html")
 
     print(f"\n✨ 网站已生成到 {SITE_DIR}/")
-    print(f"   用浏览器打开 site/index.html 即可预览")
-    print(f"   或运行: cd site && python3 -m http.server 8080")
+    print(f"   用浏览器打开 docs/books/wanwuxinsheng/index.html 即可预览")
+    print(f"   或运行: cd docs && python3 -m http.server 8080")
 
 
 if __name__ == "__main__":

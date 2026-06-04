@@ -3,75 +3,63 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>万物心声 — 小说目录 — 万物心声</title>
-<link rel="stylesheet" href="css/style.css">
+<title>我的书架</title>
+<link rel="stylesheet" href="css/bookshelf.css">
 </head>
 <body>
-<div class="progress-bar" id="progressBar"></div>
-<nav class="navbar">
-  <div class="navbar-inner">
-    <a class="logo" href="index.html">万物心声</a>
-    <div class="nav-links">
-      <a href="index.html" class="active">目录</a>
+
+<header class="bookshelf-header">
+  <h1>📚 我的书架</h1>
+  <p class="subtitle">坐下来，翻开一个世界</p>
+</header>
+
+<div class="book-grid">
+
+  <!-- ========== 万物心声 ========== -->
+  <a class="book-card" href="books/wanwuxinsheng/index.html">
+    <div class="book-cover cover-wanwuxinsheng">
+      <span class="cover-badge">连载中</span>
+      <div class="cover-text">
+        <div class="cover-title">万物心声</div>
+        <div class="cover-author">当心脏开口说话，世界从此不同</div>
+      </div>
+    </div>
+    <div class="book-info">
+      <div class="book-name">万物心声</div>
+      <div class="book-meta">都市 · 系统 · 爽文 · 5章已发布</div>
+      <div class="book-desc">冉峰，星辰科技新入职后端程序员，22岁。连续通宵三天后猝死在工位——醒来后，他听到了心脏在骂他。</div>
+      <div class="book-tags">
+        <span class="book-tag status">连载中</span>
+        <span class="book-tag">系统流</span>
+        <span class="book-tag">程序员</span>
+        <span class="book-tag">🎴 小游戏</span>
+      </div>
+    </div>
+  </a>
+
+  <!-- ========== 未来新书占位 ========== -->
+  <div class="book-card new-book">
+    <div class="book-cover">
+      <div class="cover-text">
+        <div class="cover-title">➕ 新书筹备中</div>
+        <div class="cover-author">下一段旅程</div>
+      </div>
+    </div>
+    <div class="book-info">
+      <div class="book-name">敬请期待</div>
+      <div class="book-meta">想法正在发芽 🌱</div>
+      <div class="book-desc">下一本书的灵感也许就在某个深夜降临。</div>
+      <div class="book-tags">
+        <span class="book-tag">未开始</span>
+      </div>
     </div>
   </div>
-</nav>
-<div class="container">
-
-<div class="hero">
-  <h1>万物心声</h1>
-  <p class="subtitle">当心脏开口说话，世界从此不同</p>
-  <p class="meta">都市 · 系统 · 爽文 · 连载中</p>
-</div>
-
-<div class="intro-card">
-  <h2>📖 作品简介</h2>
-  <p>冉峰，星辰科技新入职后端程序员，22岁。连续通宵三天后，凌晨三点心脏骤停倒在工位——醒来后，他听到了心脏在骂他。</p>
-  <p style="margin-top:0.6rem">从此，他拥有了"万物心声"系统：能听懂电脑的报怨、打印机的八卦、饮水机的碎碎念。但这只是开始——当公司内斗将他卷入更深的漩涡，他发现了系统背后隐藏的百年秘密：他不是第一个觉醒者，也不会是最后一个。</p>
-  <p style="margin-top:0.6rem">从被碾碎的牛马到掌握世界之声，冉峰只有一个原则：<strong>动我可以，动我身边的人——不行。</strong></p>
-</div>
-
-<div class="chapter-list">
-  <h2>📚 章节目录</h2>
-  <div class="chapter-item">
-    <span class="chapter-num">第1章</span>
-    <a href="chapter-01.html">第一章</a>
-  </div>
-  <div class="chapter-item">
-    <span class="chapter-num">第2章</span>
-    <a href="chapter-02.html">第二章</a>
-  </div>
-  <div class="chapter-item">
-    <span class="chapter-num">第3章</span>
-    <a href="chapter-03.html">第三章</a>
-  </div>
-  <div class="chapter-item">
-    <span class="chapter-num">第4章</span>
-    <a href="chapter-04.html">第四章</a>
-  </div>
-  <div class="chapter-item">
-    <span class="chapter-num">第5章</span>
-    <a href="chapter-05.html">第五章</a>
-  </div>
 
 </div>
 
-</div>
-<footer class="footer">
-  <p>《万物心声》© 2025 &mdash; 冉峰的故事，从这里开始</p>
-  <p style="margin-top:0.3rem"><a href="index.html">返回目录</a></p>
+<footer class="bookshelf-footer">
+  <p>每本书都是一扇门，通向一个世界</p>
 </footer>
-<script>
-(function() {
-  var bar = document.getElementById('progressBar');
-  if (bar) {
-    window.addEventListener('scroll', function() {
-      var h = document.documentElement;
-      var p = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
-      bar.style.width = Math.min(p, 100) + '%';
-    });
-  }
-})();
-</script>
+
 </body>
 </html>
